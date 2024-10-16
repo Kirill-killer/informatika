@@ -1,1 +1,7 @@
-
+import math 
+x=float(input('ведите значение переменной x: '))
+y=float(input('ведите значение переменной y: '))
+z=float(input('ведите значение переменной z: '))
+a = ((x**3)/2)**1/2-math.sin(y)#функция для вычисления
+b = (math.exp(2)/3)-math.cos(y)+z+math.log(y)#другая функция для вычесления
+print(a,b)
