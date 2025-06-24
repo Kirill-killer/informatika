@@ -1,0 +1,40 @@
+clc
+clear all
+close all
+format shortE
+
+n=11;
+a=-5;
+b=7;
+h=(b-a)/(n-1);
+
+% x = a:h:b
+
+x = linspace(a,b,n);
+f = @(x)(x-3).*(x+2).*(x-1).*(x-5);
+figure(1)
+hold on
+grid on
+xlabel('X')
+ylabel('Y')
+xlim([a,b])
+plot(x,f(x),'p-')
+
+
+eps = 1e-5;
+tau=.05;
+m=4;
+
+for j=1:m
+    x1=3.5;
+    x2=x1-tau*f(x1);
+    iter=1;
+    while abs(x1-x2)>eps
+        x1=x2;
+        x2=x1-tau*f(x1);
+        iter=iter+1;
+    end
+    otvet(j)=x2;
+    f=@(x)f(x)/(x-x2)
+end
+otvet
