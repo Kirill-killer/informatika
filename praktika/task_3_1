@@ -1,0 +1,44 @@
+clc
+clear all
+close all
+format shortE
+
+a=0;
+b=5;
+n=6;
+
+x=linspace(a,b,n);
+f=@(x)exp(-x).*sin(x);
+
+figure(1)
+hold on
+grid on
+xlabel('X')
+ylabel('Y')
+xlim([a,b])
+plot(x,f(x),'p')
+
+A=Interr(x,f,n)
+
+m=100;
+xx=linspace(a,b,m);
+y=0;
+
+for i=1:m
+    y(i)=0;
+    for j=1:n
+        y(i)=y(i)+A(j)*xx(i)^(j-1);
+    end
+end
+
+plot(xx,y,'r-')
+
+function a=Interr(x,f,n)
+for i=1:n
+    for j=1:n
+        K(i,j)=x(i)^(j-1);
+    end
+    F(i,1)=f(x(i));
+end
+a=inv(K)*F;
+end
